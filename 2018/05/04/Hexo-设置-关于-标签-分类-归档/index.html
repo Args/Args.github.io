@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>hello hexo · Somebody&#39;s Studio</title>
+    <title>Hexo 设置 关于 标签 分类 归档 · Somebody&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -181,7 +181,7 @@
                 <a href="/" >Somebody&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">hello hexo</a>
+                <a href="#" class="post-name">Hexo 设置 关于 标签 分类 归档</a>
             </div>
     </div>
     
@@ -213,7 +213,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            hello hexo
+            Hexo 设置 关于 标签 分类 归档
             <!-- 404 -->
             
         </h1>
@@ -231,15 +231,13 @@ height:50vh;
             
                 <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "test">test</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Another">Another</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
     
 </div>
             
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2013/05/07</span>
+                <span class="post-intro-time">2018/05/04</span>
                 
                 <span class="shareWrapper">
                     <span class="iconfont-archer shareIcon">&#xe71d;</span>
@@ -340,7 +338,55 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        
+        <h3 id="添加-关于页面"><a href="#添加-关于页面" class="headerlink" title="添加 关于页面"></a>添加 关于页面</h3><p>使用：<code>hexo new page &quot;about&quot;</code> 新建一个 <code>关于我</code> 页面。<br>主题的 <code>_config.yml</code> 文件中的 <code>menu</code> 中进行匹配</p>
+<pre><code>menu:
+  home: /      //主页
+  categories: /categories //分类
+  archives: /archives   //归档
+  tags: /tags   //标签
+  about: /about   //关于（添加此行即可）
+</code></pre><p>编辑 about 关于页面 md文件 部署就能看到</p>
+<h3 id="添加-标签页面"><a href="#添加-标签页面" class="headerlink" title="添加 标签页面"></a>添加 标签页面</h3><p>使用： <code>hexo new page tags</code> 新建一个 <code>标签</code> 页面。<br>主题的 <code>_config.yml</code> 文件中的 <code>menu</code> 中进行匹配</p>
+<pre><code>menu:
+  home: /      //主页
+  categories: /categories //分类
+  archives: /archives   //归档
+  tags: /tags   //标签                  （添加此行即可）
+  about: /about   //关于
+</code></pre><p>底下代码是一篇包含 标签 文章的例子：</p>
+<pre><code>title: 标签测试
+tags:
+  - Testing                   （这个就是文章的标签了）
+  - Another Tag               （这个就是文章的标签了）
+---
+</code></pre><h3 id="添加-分类页面"><a href="#添加-分类页面" class="headerlink" title="添加 分类页面"></a>添加 分类页面</h3><p>使用： <code>hexo new page categories</code> 新建一个 <code>分类</code> 页面。<br>主题的 <code>_config.yml</code> 文件中的 <code>menu</code> 中进行匹配</p>
+<pre><code>menu:
+  home: /      //主页
+  categories: /categories //分类        （添加此行即可）
+  archives: /archives   //归档
+  tags: /tags   //标签                  
+  about: /about   //关于
+</code></pre><p>底下代码是一篇包含 分类 文章的例子：</p>
+<pre><code>title: 分类测试
+categories:
+- hexo                       （这个就是文章的分类了）
+---
+</code></pre><h3 id="添加-归档页面"><a href="#添加-归档页面" class="headerlink" title="添加 归档页面"></a>添加 归档页面</h3><p>主题的 <code>_config.yml</code> 文件中的 <code>menu</code> 中进行匹配</p>
+<pre><code>menu:
+  home: /      //主页
+  categories: /categories //分类        
+  archives: /archives   //归档             （添加此行即可）
+  tags: /tags   //标签                  
+  about: /about   //关于
+</code></pre><h3 id="添加-自定义页面"><a href="#添加-自定义页面" class="headerlink" title="添加 自定义页面"></a>添加 自定义页面</h3><p>使用： <code>hexo new page &quot;guestbook&quot;</code> 新建一个 自定义 页面。<br>主题的 <code>_config.yml</code> 文件中的 <code>menu</code> 中进行匹配</p>
+<pre><code>menu:
+  home: /      //主页
+  categories: /categories //分类        
+  archives: /archives   //归档   
+  tags: /tags   //标签                  
+  about: /about   //关于
+  guestbook: /guestbook    //自定义             （添加此行即可）
+</code></pre>
     </article>
     <!-- license  -->
     
@@ -348,13 +394,13 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2018/05/04/hello-world/" title= Hello World >
-                    <div class="nextTitle">Hello World</div>
-                </a>
-            
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2018/05/04/Hexo-基本操作/" title= Hexo 基本操作 >
+                    <div class="prevTitle">Hexo 基本操作</div>
+                </a>
             
         </li>
     </ul>
@@ -463,7 +509,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加-关于页面"><span class="toc-number">1.</span> <span class="toc-text">添加 关于页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加-标签页面"><span class="toc-number">2.</span> <span class="toc-text">添加 标签页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加-分类页面"><span class="toc-number">3.</span> <span class="toc-text">添加 分类页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加-归档页面"><span class="toc-number">4.</span> <span class="toc-text">添加 归档页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加-自定义页面"><span class="toc-number">5.</span> <span class="toc-text">添加 自定义页面</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

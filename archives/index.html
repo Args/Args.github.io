@@ -290,6 +290,75 @@
     
     
         <article class="index-post">
+            <a class="abstract-title" href = "/2018/05/04/Hexo-设置-关于-标签-分类-归档/" >
+                
+                    <span>Hexo 设置 关于 标签 分类 归档</span>
+            </a>
+            <div class="abstract-content">
+                添加 关于页面使用：hexo new page &quot;about&quot; 新建一个 关于我 页面。主题的 _config.yml 文件中的 menu 中进行匹配
+menu:
+  home: /      //主页
+  categories: /categories //分类
+  archives: /archives   //归档
+  tags: /tags   //标签
+  about: /about   //关于（添加此行即可）
+编辑 about 关于页面 md文件 部署就能看到
+添加 标签页面使用： hexo new page tags 新建一个 标签 页面。主题的 _c...
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/04</span>
+                </div>
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
+    
+</div>
+                
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="abstract-title" href = "/2018/05/04/Hexo-基本操作/" >
+                
+                    <span>Hexo 基本操作</span>
+            </a>
+            <div class="abstract-content">
+                部署至github$ hexo clean # 清理
+$ hexo g  # 生成文件
+$ hexo d  # 部署文件
+常见命令hexo new &quot;postName&quot; #新建文章
+hexo new page &quot;pageName&quot; #新建页面
+hexo generate #生成静态页面至public目录
+hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）
+hexo deploy #部署到GitHub
+hexo help  # 查看帮助
+hexo version  #查看Hexo的...
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/04</span>
+                </div>
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
+    
+</div>
+                
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="abstract-title" href = "/2018/05/04/hello-world/" >
                 
                     <span>Hello World</span>
@@ -327,6 +396,14 @@ More...
                     <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2013/05/07</span>
                 </div>
                 <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "test">test</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Another">Another</a>
+    
+</div>
                 
             </div>
         </article>
@@ -438,7 +515,27 @@ More...
     
     
     
-    <div class="total-archive"> Total : 2 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 4 </div>
     
     <div class="post-archive">
     
@@ -447,6 +544,16 @@ More...
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/04</span><a class="archive-post-title" href= "/2018/05/04/Hexo-基本操作/" >Hexo 基本操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/04</span><a class="archive-post-title" href= "/2018/05/04/Hexo-设置-关于-标签-分类-归档/" >Hexo 设置 关于 标签 分类 归档</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -471,6 +578,12 @@ More...
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="test"><span class="iconfont-archer">&#xe606;</span>test</span>
+    
+        <span class="sidebar-tag-name" data-tags="Another"><span class="iconfont-archer">&#xe606;</span>Another</span>
+    
+        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -504,6 +617,8 @@ jsonContent:
 </div>
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Hexo"><span class="iconfont-archer">&#xe60a;</span>Hexo</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
