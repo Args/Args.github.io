@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Hexo 基本操作 · Somebody&#39;s Studio</title>
+    <title>如何统计xcode工程的代码总行数 · Somebody&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -181,7 +181,7 @@
                 <a href="/" >Somebody&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Hexo 基本操作</a>
+                <a href="#" class="post-name">如何统计xcode工程的代码总行数</a>
             </div>
     </div>
     
@@ -213,7 +213,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Hexo 基本操作
+            如何统计xcode工程的代码总行数
             <!-- 404 -->
             
         </h1>
@@ -231,13 +231,13 @@ height:50vh;
             
                 <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "terminal">terminal</a>
     
 </div>
             
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2018/05/04</span>
+                <span class="post-intro-time">2015/12/22</span>
                 
                 <span class="shareWrapper">
                     <span class="iconfont-archer shareIcon">&#xe71d;</span>
@@ -338,23 +338,14 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="部署至github"><a href="#部署至github" class="headerlink" title="部署至github"></a>部署至github</h3><pre><code>$ hexo clean # 清理
-$ hexo g  # 生成文件
-$ hexo d  # 部署文件
-</code></pre><h3 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h3><pre><code>hexo new &quot;postName&quot; #新建文章
-hexo new page &quot;pageName&quot; #新建页面
-hexo generate #生成静态页面至public目录
-hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）
-hexo deploy #部署到GitHub
-hexo help  # 查看帮助
-hexo version  #查看Hexo的版本
-</code></pre><h3 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h3><pre><code>hexo n == hexo new
-hexo g == hexo generate
-hexo s == hexo server
-hexo d == hexo deploy
-</code></pre><h3 id="组合命令"><a href="#组合命令" class="headerlink" title="组合命令"></a>组合命令</h3><pre><code>hexo s -g #生成并本地预览
-hexo d -g #生成并上传
-</code></pre>
+        <p>有时候我们夜以继日的写完了一个项目，想查查看自己到底敲了多少行，但是发现！xcode没有这个功能啊！别怕，终端帮你搞定。</p>
+<p>打开终端 输入 cd 空格 你的工程路径</p>
+<p>这里有一个小技巧，你把要统计的文件夹直接拖住拖到终端里，路径就出来了。</p>
+<p>然后输入</p>
+<p><code>find . -name &quot;*.m&quot; -or -name &quot;*.h&quot;  |xargs wc -l</code></p>
+<p>回车过后，各个文件和总代码行数就出来啦。</p>
+<p>这里简单介绍下命令的作用。<code>find</code>就是查找，后面的点表示在当前路径下查找，-<code>name</code>后加一个<code>*.m</code>,就是通配.m文件，你也可以加上c和swift，最后的<code>xargs</code>表示把前面的命令行结果当做参数，<code>wc -l</code>是统计行数。</p>
+
     </article>
     <!-- license  -->
     
@@ -363,16 +354,16 @@ hexo d -g #生成并上传
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2018/05/04/Hexo-设置-关于-标签-分类-归档/" title= Hexo 设置 关于 标签 分类 归档 >
-                    <div class="nextTitle">Hexo 设置 关于 标签 分类 归档</div>
+                <a href= "/2016/04/29/Unable-to-add-App-ID-because-the-10-App-ID-limit-in-7-days-has-been-exceeded解决办法/" title= Unable to add App ID because the '10' App ID limit in '7' days has been exceeded解决办法 >
+                    <div class="nextTitle">Unable to add App ID because the '10' App ID limit in '7' days has been exceeded解决办法</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2018/05/04/hello-world/" title= Hello World >
-                    <div class="prevTitle">Hello World</div>
+                <a href= "/2015/12/16/自定义Navigation转场动画/" title= 自定义Navigation转场动画 >
+                    <div class="prevTitle">自定义Navigation转场动画</div>
                 </a>
             
         </li>
@@ -482,7 +473,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#部署至github"><span class="toc-number">1.</span> <span class="toc-text">部署至github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见命令"><span class="toc-number">2.</span> <span class="toc-text">常见命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩写"><span class="toc-number">3.</span> <span class="toc-text">缩写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合命令"><span class="toc-number">4.</span> <span class="toc-text">组合命令</span></a></li></ol>
+        
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

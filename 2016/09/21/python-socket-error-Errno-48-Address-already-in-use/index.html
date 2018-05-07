@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Hexo 基本操作 · Somebody&#39;s Studio</title>
+    <title>python socket.error: [Errno 48] Address already in use · Somebody&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -181,7 +181,7 @@
                 <a href="/" >Somebody&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Hexo 基本操作</a>
+                <a href="#" class="post-name">python socket.error: [Errno 48] Address already in use</a>
             </div>
     </div>
     
@@ -213,7 +213,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Hexo 基本操作
+            python socket.error: [Errno 48] Address already in use
             <!-- 404 -->
             
         </h1>
@@ -231,13 +231,15 @@ height:50vh;
             
                 <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "网络">网络</a>
     
 </div>
             
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2018/05/04</span>
+                <span class="post-intro-time">2016/09/21</span>
                 
                 <span class="shareWrapper">
                     <span class="iconfont-archer shareIcon">&#xe71d;</span>
@@ -338,23 +340,16 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="部署至github"><a href="#部署至github" class="headerlink" title="部署至github"></a>部署至github</h3><pre><code>$ hexo clean # 清理
-$ hexo g  # 生成文件
-$ hexo d  # 部署文件
-</code></pre><h3 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h3><pre><code>hexo new &quot;postName&quot; #新建文章
-hexo new page &quot;pageName&quot; #新建页面
-hexo generate #生成静态页面至public目录
-hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）
-hexo deploy #部署到GitHub
-hexo help  # 查看帮助
-hexo version  #查看Hexo的版本
-</code></pre><h3 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h3><pre><code>hexo n == hexo new
-hexo g == hexo generate
-hexo s == hexo server
-hexo d == hexo deploy
-</code></pre><h3 id="组合命令"><a href="#组合命令" class="headerlink" title="组合命令"></a>组合命令</h3><pre><code>hexo s -g #生成并本地预览
-hexo d -g #生成并上传
-</code></pre>
+        <p>当我们用python在本地跑服务器时，经常遇到这个错误。</p>
+<p>那么怎么解决呢。给出两个简单的办法</p>
+<h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>打开终端，输入<code>sudo lsof -i:XXXX</code></p>
+<p>xxxx是你刚刚用来开启服务的端口号</p>
+<p>然后执行<code>kill AAAA</code></p>
+<p>AAAA是出现的那个PID</p>
+<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>第二个办法，打开终端，输入ps，回车</p>
+<p>找到含有“python”关键词的PID，kill</p>
+<p><strong>注：方法一较为通用，除了python外，只要是关于端口号被占用的错误都可以用这种方法来解决。</strong></p>
+
     </article>
     <!-- license  -->
     
@@ -363,16 +358,16 @@ hexo d -g #生成并上传
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2018/05/04/Hexo-设置-关于-标签-分类-归档/" title= Hexo 设置 关于 标签 分类 归档 >
-                    <div class="nextTitle">Hexo 设置 关于 标签 分类 归档</div>
+                <a href= "/2018/05/04/hello-world/" title= Hello World >
+                    <div class="nextTitle">Hello World</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2018/05/04/hello-world/" title= Hello World >
-                    <div class="prevTitle">Hello World</div>
+                <a href= "/2016/07/21/NSURL创建出来为nil的问题/" title= NSURL创建出来为nil的问题 >
+                    <div class="prevTitle">NSURL创建出来为nil的问题</div>
                 </a>
             
         </li>
@@ -482,7 +477,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#部署至github"><span class="toc-number">1.</span> <span class="toc-text">部署至github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见命令"><span class="toc-number">2.</span> <span class="toc-text">常见命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩写"><span class="toc-number">3.</span> <span class="toc-text">缩写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合命令"><span class="toc-number">4.</span> <span class="toc-text">组合命令</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法一"><span class="toc-number">1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法二"><span class="toc-number">2.</span> <span class="toc-text">方法二</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

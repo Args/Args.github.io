@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Hexo 基本操作 · Somebody&#39;s Studio</title>
+    <title>自定义Navigation转场动画 · Somebody&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -181,7 +181,7 @@
                 <a href="/" >Somebody&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Hexo 基本操作</a>
+                <a href="#" class="post-name">自定义Navigation转场动画</a>
             </div>
     </div>
     
@@ -213,7 +213,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Hexo 基本操作
+            自定义Navigation转场动画
             <!-- 404 -->
             
         </h1>
@@ -231,13 +231,15 @@ height:50vh;
             
                 <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "objc">objc</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "动画">动画</a>
     
 </div>
             
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2018/05/04</span>
+                <span class="post-intro-time">2015/12/16</span>
                 
                 <span class="shareWrapper">
                     <span class="iconfont-archer shareIcon">&#xe71d;</span>
@@ -338,23 +340,31 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="部署至github"><a href="#部署至github" class="headerlink" title="部署至github"></a>部署至github</h3><pre><code>$ hexo clean # 清理
-$ hexo g  # 生成文件
-$ hexo d  # 部署文件
-</code></pre><h3 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h3><pre><code>hexo new &quot;postName&quot; #新建文章
-hexo new page &quot;pageName&quot; #新建页面
-hexo generate #生成静态页面至public目录
-hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）
-hexo deploy #部署到GitHub
-hexo help  # 查看帮助
-hexo version  #查看Hexo的版本
-</code></pre><h3 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h3><pre><code>hexo n == hexo new
-hexo g == hexo generate
-hexo s == hexo server
-hexo d == hexo deploy
-</code></pre><h3 id="组合命令"><a href="#组合命令" class="headerlink" title="组合命令"></a>组合命令</h3><pre><code>hexo s -g #生成并本地预览
-hexo d -g #生成并上传
-</code></pre>
+        <p>碰巧遇到这个需求，简单看了下使用方法，有些东西还是要记录一下，也方便以后研究。</p>
+<h5 id="简单分以下几步"><a href="#简单分以下几步" class="headerlink" title="简单分以下几步"></a>简单分以下几步</h5><ol>
+<li>A Push B,A要实现UINavigationControllerDelegate </li>
+<li>上面的delegate中，需要实现的方法返回值是一个“转场动画” </li>
+<li>转场动画是一个id<uiviewcontrolleranimatedtransitioning> </uiviewcontrolleranimatedtransitioning></li>
+<li>需要实现的动画，在<uiviewcontrolleranimatedtransitioning>方法中实现 </uiviewcontrolleranimatedtransitioning></li>
+<li>第二步的返回值，alloc init一个转场动画，并返回</li>
+</ol>
+<p><code>A Push B</code>,A要实现<code>UINavigationControllerDelegate</code><br>这句代码务必不要忘记。<br><code>self.navigationController.delegate = self;</code></p>
+<p>代理中有个方法： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (nullable id &lt;UIViewControllerAnimatedTransitioning&gt;) </span><br><span class="line">navigationController:(UINavigationController *)navigationController </span><br><span class="line">animationControllerForOperation:(UINavigationControllerOperation)operation </span><br><span class="line">fromViewController:(UIViewController *)fromVC </span><br><span class="line">toViewController:(UIViewController *)toVC NS_AVAILABLE_IOS(7_0);</span><br></pre></td></tr></table></figure>
+<p>实现了以上方法，push的过程中就会调用，返回值是一个遵循了<code>UIViewControllerAnimatedTransitioning</code>代理的id值，可以理解为，返回值就是一个转场动画。通常我们可以自定义一个继承自NSObject的类并实现这个协议。<br>自定义转场动画<br>上面提到，遵循了<code>UIViewControllerAnimatedTransitioning</code>代理的id值可以理解为一个转场动画，我们来定义一个这个玩意。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;Foundation/Foundation.h&gt; </span><br><span class="line">#import &lt;UIKit/UIKit.h&gt; </span><br><span class="line">@interface MagicMoveTransition : </span><br><span class="line">NSObject&lt;UIViewControllerAnimatedTransitioning&gt; </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>注意import了UIKit<br>然后.m文件中，需要实现两个方法， </p>
+<ul>
+<li>(NSTimeInterval)transitionDuration:(nullable id &lt; UIViewControllerContextTransitioning&gt;)transitionContext; </li>
+<li>(void)animateTransition:(id <uiviewcontrollercontexttransitioning>)transitionContext; </uiviewcontrollercontexttransitioning></li>
+</ul>
+<p>第一个方法返回一个执行时间，第二个方法中，定义需要的动画效果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- (NSTimeInterval)transitionDuration:(id &lt;UIViewControllerContextTransitioning&gt;)transitionContext&#123;</span><br><span class="line">    return 0.6f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">- (void)animateTransition:(id &lt;UIViewControllerContextTransitioning&gt;)transitionContext&#123;</span><br><span class="line">    //获取两个VC 和 动画发生的容器</span><br><span class="line">    FirstCollectionViewController *fromVC = (FirstCollectionViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];</span><br><span class="line">    SecondViewController *toVC   = (SecondViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];</span><br><span class="line">    //containerView包含转换过程中涉及到的view</span><br><span class="line">    UIView *containerView = [transitionContext containerView];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //对Cell上的 imageView 截图，同时将这个 imageView 本身隐藏</span><br><span class="line">    CollectionViewCell *cell =(CollectionViewCell *)[fromVC.collectionView cellForItemAtIndexPath:[[fromVC.collectionView indexPathsForSelectedItems] firstObject]];</span><br><span class="line">    fromVC.indexPath = [[fromVC.collectionView indexPathsForSelectedItems]firstObject];</span><br><span class="line"></span><br><span class="line">    UIView * snapShotView = [cell.imageView snapshotViewAfterScreenUpdates:NO];</span><br><span class="line">    //将cell中图片的frame从他的父视图坐标系转到containerView坐标系中</span><br><span class="line">    snapShotView.frame = fromVC.finalCellRect = [containerView convertRect:cell.imageView.frame fromView:cell.imageView.superview];</span><br><span class="line">    cell.imageView.hidden = YES;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //设置第二个控制器的位置、透明度</span><br><span class="line">    toVC.view.frame = [transitionContext finalFrameForViewController:toVC];</span><br><span class="line">    toVC.view.alpha = 0;</span><br><span class="line">    toVC.imageViewForSecond.hidden = YES;</span><br><span class="line"></span><br><span class="line">    //把动画前后的两个ViewController加到容器中,顺序很重要,snapShotView在上方</span><br><span class="line">    [containerView addSubview:toVC.view];</span><br><span class="line">    [containerView addSubview:snapShotView];</span><br><span class="line"></span><br><span class="line">    //动起来。第二个控制器的透明度0~1；让截图SnapShotView的位置更新到最新；</span><br><span class="line"></span><br><span class="line">    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0f usingSpringWithDamping:0.6f initialSpringVelocity:1.0f options:UIViewAnimationOptionCurveLinear animations:^&#123;</span><br><span class="line">        [containerView layoutIfNeeded];</span><br><span class="line">        toVC.view.alpha = 1.0;</span><br><span class="line">        snapShotView.frame = [containerView convertRect:toVC.imageViewForSecond.frame fromView:toVC.view];</span><br><span class="line">    &#125; completion:^(BOOL finished) &#123;</span><br><span class="line">        //为了让回来的时候，cell上的图片显示，必须要让cell上的图片显示出来</span><br><span class="line">        toVC.imageViewForSecond.hidden = NO;</span><br><span class="line">        cell.imageView.hidden = NO;</span><br><span class="line">        [snapShotView removeFromSuperview];</span><br><span class="line">        //告诉系统动画结束</span><br><span class="line">        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面很不负责的粘贴了一大段代码，具体需求具体分析吧。这个操作是在定义你的动画。这样在push的controller里，代理方法就可以这样写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (id &lt;UIViewControllerAnimatedTransitioning&gt;)navigationController:(UINavigationController *)navigationController</span><br><span class="line">                                   animationControllerForOperation:(UINavigationControllerOperation)operation</span><br><span class="line">                                                fromViewController:(UIViewController *)fromVC</span><br><span class="line">                                                  toViewController:(UIViewController *)toVC&#123;</span><br><span class="line"></span><br><span class="line">    if ([toVC isKindOfClass:[SecondViewController class]]) &#123;</span><br><span class="line">        MagicMoveTransition *transition = [[MagicMoveTransition alloc]init];</span><br><span class="line">        return transition;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>加一句，苹果官方规定：所有的动画视图都必须放在transitionContext的containerView里。<br>搞定。</strong><br>FYI<br><a href="http://www.kittenyang.com/uiviewcontrollertransitioning/" target="_blank" rel="noopener">http://www.kittenyang.com/uiviewcontrollertransitioning/</a><br><a href="https://github.com/boycechang/BCMagicTransition" target="_blank" rel="noopener">https://github.com/boycechang/BCMagicTransition</a></p>
+
     </article>
     <!-- license  -->
     
@@ -363,16 +373,16 @@ hexo d -g #生成并上传
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href= "/2018/05/04/Hexo-设置-关于-标签-分类-归档/" title= Hexo 设置 关于 标签 分类 归档 >
-                    <div class="nextTitle">Hexo 设置 关于 标签 分类 归档</div>
+                <a href= "/2015/12/22/如何统计xcode工程的代码总行数/" title= 如何统计xcode工程的代码总行数 >
+                    <div class="nextTitle">如何统计xcode工程的代码总行数</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2018/05/04/hello-world/" title= Hello World >
-                    <div class="prevTitle">Hello World</div>
+                <a href= "/2015/12/10/swift开发中的No-such-module-Cocoa-错误/" title= swift开发中的No such module 'Cocoa' 错误 >
+                    <div class="prevTitle">swift开发中的No such module 'Cocoa' 错误</div>
                 </a>
             
         </li>
@@ -482,7 +492,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#部署至github"><span class="toc-number">1.</span> <span class="toc-text">部署至github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见命令"><span class="toc-number">2.</span> <span class="toc-text">常见命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩写"><span class="toc-number">3.</span> <span class="toc-text">缩写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合命令"><span class="toc-number">4.</span> <span class="toc-text">组合命令</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#简单分以下几步"><span class="toc-number">1.</span> <span class="toc-text">简单分以下几步</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

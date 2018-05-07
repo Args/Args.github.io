@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Hexo 基本操作 · Somebody&#39;s Studio</title>
+    <title>iOS ffmpeg编译，C compiler test failed.问题 · Somebody&#39;s Studio</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -181,7 +181,7 @@
                 <a href="/" >Somebody&#39;s Studio.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">Hexo 基本操作</a>
+                <a href="#" class="post-name">iOS ffmpeg编译，C compiler test failed.问题</a>
             </div>
     </div>
     
@@ -213,7 +213,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            Hexo 基本操作
+            iOS ffmpeg编译，C compiler test failed.问题
             <!-- 404 -->
             
         </h1>
@@ -231,13 +231,13 @@ height:50vh;
             
                 <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Hexo">Hexo</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "objc">objc</a>
     
 </div>
             
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2018/05/04</span>
+                <span class="post-intro-time">2018/05/07</span>
                 
                 <span class="shareWrapper">
                     <span class="iconfont-archer shareIcon">&#xe71d;</span>
@@ -338,23 +338,32 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h3 id="部署至github"><a href="#部署至github" class="headerlink" title="部署至github"></a>部署至github</h3><pre><code>$ hexo clean # 清理
-$ hexo g  # 生成文件
-$ hexo d  # 部署文件
-</code></pre><h3 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h3><pre><code>hexo new &quot;postName&quot; #新建文章
-hexo new page &quot;pageName&quot; #新建页面
-hexo generate #生成静态页面至public目录
-hexo server #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）
-hexo deploy #部署到GitHub
-hexo help  # 查看帮助
-hexo version  #查看Hexo的版本
-</code></pre><h3 id="缩写"><a href="#缩写" class="headerlink" title="缩写"></a>缩写</h3><pre><code>hexo n == hexo new
-hexo g == hexo generate
-hexo s == hexo server
-hexo d == hexo deploy
-</code></pre><h3 id="组合命令"><a href="#组合命令" class="headerlink" title="组合命令"></a>组合命令</h3><pre><code>hexo s -g #生成并本地预览
-hexo d -g #生成并上传
-</code></pre>
+        <h4 id="如何编译ffmpeg"><a href="#如何编译ffmpeg" class="headerlink" title="如何编译ffmpeg"></a>如何编译ffmpeg</h4><p>使用大牛编写的自动化脚本<br>脚本地址: <a href="https://gist.github.com/m1entus/6983547" target="_blank" rel="noopener">https://gist.github.com/m1entus/6983547</a></p>
+<p>运行这个脚本需要依赖一个库Perl写的脚本，搜了一下网上目前编译FFmpeg库的帖子基本都会提到这个脚本，脚本地址如下: <a href="https://github.com/mansr/gas-preprocessor。" target="_blank" rel="noopener">https://github.com/mansr/gas-preprocessor。</a></p>
+<p>下载完这两个脚本后，编译FFmpeg库的准备工作就基本完成了，接着依次执行下面几步:</p>
+<p>1.拷贝gas-preprocessor.pl文件到 /usr/bin目录下。</p>
+<p>2.修改gas-preprocessor.pl文件的权限</p>
+<p>　　<strong><em>注:需要有读，写和执行的权限。具体操作为，首先在命令行下进入/usr/bin目录，然后执行chmod命令</em></strong></p>
+<p><code>chmod 777 gas-preprocessor.pl</code></p>
+<p>3.切换build-ffmpeg.sh脚本的目录下，使用命令sh build-ffmpeg.sh 运行该脚本即可。</p>
+<p>　　注: 1) build-ffmpeg.sh脚本的父目录的名字不能包括空格，否则可能导致构建失败。</p>
+<p>　　　 2) build-ffmpeg.sh脚本中可以配置编译的FFMpeg版本，以及使用iOS SDK的版本,代码片段如下 
+　　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">###########################################################################</span><br><span class="line">#  Choose your ffmpeg version and your currently-installed iOS SDK version:</span><br><span class="line">#</span><br><span class="line">VERSION=&quot;2.0.2&quot;</span><br><span class="line">SDKVERSION=&quot;7.0&quot;</span><br></pre></td></tr></table></figure>
+<p>关于如何编译详情可访问<a href="http://www.cnblogs.com/weixhe/p/4218812.html" target="_blank" rel="noopener">http://www.cnblogs.com/weixhe/p/4218812.html</a></p>
+<h4 id="C-compiler-test-failed-问题解决"><a href="#C-compiler-test-failed-问题解决" class="headerlink" title="C compiler test failed.问题解决"></a>C compiler test failed.问题解决</h4><p>实际上这个问题出现的原因有很多。大家可以根据它报错的log相应的修改。<br>我只说一下我的错误。<br>我出错的原因是，上面的教程是一个比较老的教程。如今的话ffmpeg似乎已经到3.0版本了。而脚本中还只是2.0。<br>这不是关键，关键是iPhone SDK的版本需要和你Mac上的版本一致。</p>
+<p>1.打开终端。<br>输入并回车</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/developer/SDKs/</span><br></pre></td></tr></table></figure>
+<p>然后输入<br><code>ls</code><br>可以查看到你当前iOS SDK的版本</p>
+<p>2.打开sh脚本。<br>修改iOS SDK版本。 
+　　　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">###########################################################################</span><br><span class="line">#  Choose your ffmpeg version and your currently-installed iOS SDK version:</span><br><span class="line">#</span><br><span class="line">VERSION=&quot;2.0.2&quot;</span><br><span class="line">SDKVERSION=&quot;9.2&quot;</span><br></pre></td></tr></table></figure>
+<p>3.再次执行脚本</p>
+<p><code>./install-ffmpeg.sh</code></p>
+<p>另外，给几个其他脚本的链接，本人用的第二个。也就是并没有用教程中给的脚本链接。不过用法都是相同的。<br>1.<a href="https://github.com/kewlbear/FFmpeg-iOS-build-script" target="_blank" rel="noopener">https://github.com/kewlbear/FFmpeg-iOS-build-script</a><br>这个估计是韩国人写得，是我找的几个中非常好得，自动化程度很高，一键搞定，避免了自己反复的配置，尤其是对unix不是很熟悉的人。</p>
+<p>2.<a href="https://github.com/lvjian700/ffmpegc" target="_blank" rel="noopener">https://github.com/lvjian700/ffmpegc</a><br>这个是国人写得，也是很不错的。</p>
+<p>3.<a href="http://blog.csdn.net/colorapp/article/details/42871267" target="_blank" rel="noopener">http://blog.csdn.net/colorapp/article/details/42871267</a><br>这份也还好。</p>
+
     </article>
     <!-- license  -->
     
@@ -362,17 +371,12 @@ hexo d -g #生成并上传
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2018/05/04/Hexo-设置-关于-标签-分类-归档/" title= Hexo 设置 关于 标签 分类 归档 >
-                    <div class="nextTitle">Hexo 设置 关于 标签 分类 归档</div>
-                </a>
-            
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href= "/2018/05/04/hello-world/" title= Hello World >
-                    <div class="prevTitle">Hello World</div>
+                <a href= "/2018/05/07/Stack-Overflow-requires-external-JavaScript-from-another-domain-which-is-blocked-or-failed-to-load/" title= Stack Overflow requires external JavaScript from another domain, which is blocked or failed to load >
+                    <div class="prevTitle">Stack Overflow requires external JavaScript from another domain, which is blocked or failed to load</div>
                 </a>
             
         </li>
@@ -482,7 +486,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#部署至github"><span class="toc-number">1.</span> <span class="toc-text">部署至github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常见命令"><span class="toc-number">2.</span> <span class="toc-text">常见命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩写"><span class="toc-number">3.</span> <span class="toc-text">缩写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组合命令"><span class="toc-number">4.</span> <span class="toc-text">组合命令</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#如何编译ffmpeg"><span class="toc-number">1.</span> <span class="toc-text">如何编译ffmpeg</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-compiler-test-failed-问题解决"><span class="toc-number">2.</span> <span class="toc-text">C compiler test failed.问题解决</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

@@ -290,6 +290,80 @@
     
     
         <article class="index-post">
+            <a class="abstract-title" href = "/2018/05/07/iOS-ffmpeg编译，C-compiler-test-failed-问题/" >
+                
+                    <span>iOS ffmpeg编译，C compiler test failed.问题</span>
+            </a>
+            <div class="abstract-content">
+                实际上这个问题出现的原因有很多。大家可以根据它报错的log相应的修改。我只说一下我的错误。我出错的原因是，上面的教程是一个比较老的教程。如今的话ffmpeg似乎已经到3.0版本了。而脚本中还只是2.0。这不是关键，关键是iPhone SDK的版本需要和你Mac上的版本一致。
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/07</span>
+                </div>
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "objc">objc</a>
+    
+</div>
+                
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="abstract-title" href = "/2018/05/07/Stack-Overflow-requires-external-JavaScript-from-another-domain-which-is-blocked-or-failed-to-load/" >
+                
+                    <span>Stack Overflow requires external JavaScript from another domain, which is blocked or failed to load</span>
+            </a>
+            <div class="abstract-content">
+                Stack Overflow requires external JavaScript from another domain, which is blocked or failed to load一直以来都在StackOverflow上搜索问题，想到竟然没有一个它的账号，突然奇想的想注册一个，然后发现了这个问题。原因是什么呢，它用了ajax.googleapis.com的jquery，用到了谷歌的东西的话你就大概理解了，如验证码之类的，总之就是被墙了。
+翻墙吧少年！
+
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/07</span>
+                </div>
+                <!-- tags  -->
+                
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="abstract-title" href = "/2018/05/07/微软的Live-SDK各个API简介/" >
+                
+                    <span>微软的Live SDK各个API简介</span>
+            </a>
+            <div class="abstract-content">
+                最近做的项目要用到微软的Live SDK，国内资料真是少的可怜。自己总结了下他给出的API，如果有用到的多多少少会有点用处吧。
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/07</span>
+                </div>
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "objc">objc</a>
+    
+</div>
+                
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="abstract-title" href = "/2018/05/04/Hexo-设置-关于-标签-分类-归档/" >
                 
                     <span>Hexo 设置 关于 标签 分类 归档</span>
@@ -383,25 +457,111 @@ More...
     
     
         <article class="index-post">
-            <a class="abstract-title" href = "/2013/05/07/hello-hexo/" >
+            <a class="abstract-title" href = "/2016/09/21/python-socket-error-Errno-48-Address-already-in-use/" >
                 
-                    <span>hello hexo</span>
+                    <span>python socket.error: [Errno 48] Address already in use</span>
             </a>
             <div class="abstract-content">
-                
+                当我们用python在本地跑服务器时，经常遇到这个错误。
+那么怎么解决呢。给出两个简单的办法
+方法一打开终端，输入sudo lsof -i:XXXX
+xxxx是你刚刚用来开启服务的端口号
+然后执行kill AAAA
+AAAA是出现的那个PID
+方法二第二个办法，打开终端，输入ps，回车
+找到含有“python”关键词的PID，kill
+注：方法一较为通用，除了python外，只要是关于端口号被占用的错误都可以用这种方法来解决。
+
             </div>
             <div class="abstract-post-meta">
                 <!-- date  -->
                 <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2013/05/07</span>
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2016/09/21</span>
                 </div>
                 <!-- tags  -->
                 
                 <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "test">test</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "python">python</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Another">Another</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "网络">网络</a>
+    
+</div>
+                
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="abstract-title" href = "/2016/07/21/NSURL创建出来为nil的问题/" >
+                
+                    <span>NSURL创建出来为nil的问题</span>
+            </a>
+            <div class="abstract-content">
+                这个问题。除开你[NSURL URLWithString：Str]的Str为空这样的傻逼问题之外，百分之八十都是因为str中包含汉字等未经编码的格式产生的。
+解决办法：Str = [Str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];  
+这样处理过后再创建URL
+
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2016/07/21</span>
+                </div>
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "objc">objc</a>
+    
+</div>
+                
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="abstract-title" href = "/2016/04/29/Unable-to-add-App-ID-because-the-10-App-ID-limit-in-7-days-has-been-exceeded解决办法/" >
+                
+                    <span>Unable to add App ID because the &#39;10&#39; App ID limit in &#39;7&#39; days has been exceeded解决办法</span>
+            </a>
+            <div class="abstract-content">
+                出现原因根据这句提示，其实也差不多能理解，它说不能添加AppID因为超出了7天内10个AppID的限制。也就是说，现在苹果公司应该是对真机调试做出了限制（不知道和xcode版本有没有关系，因为我的是最新的），限制7天内值允许10个app进行真机运行。
+解决方法其实大概也能想到- -，因为它只是对id做了限制，为了你不要创建出大量的ID出来，即bundle ID，但是它并不能识别出你的代码到底是啥，变还是没变。所以- -你把需要调试的app的bundle ID替换成过去不久真机调试过的app的bundle ID即可。
+
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2016/04/29</span>
+                </div>
+                <!-- tags  -->
+                
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="abstract-title" href = "/2015/12/22/如何统计xcode工程的代码总行数/" >
+                
+                    <span>如何统计xcode工程的代码总行数</span>
+            </a>
+            <div class="abstract-content">
+                有时候我们夜以继日的写完了一个项目，想查查看自己到底敲了多少行，但是发现！xcode没有这个功能啊！别怕，终端帮你搞定。
+            </div>
+            <div class="abstract-post-meta">
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2015/12/22</span>
+                </div>
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "terminal">terminal</a>
     
 </div>
                 
@@ -409,6 +569,10 @@ More...
         </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">NEXT &#62;</a>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -535,7 +699,124 @@ More...
     
     
     
-    <div class="total-archive"> Total : 4 </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 13 </div>
     
     <div class="post-archive">
     
@@ -544,6 +825,21 @@ More...
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2018/05/07/Stack-Overflow-requires-external-JavaScript-from-another-domain-which-is-blocked-or-failed-to-load/" >Stack Overflow requires external JavaScript from another domain, which is blocked or failed to load</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2018/05/07/iOS-ffmpeg编译，C-compiler-test-failed-问题/" >iOS ffmpeg编译，C compiler test failed.问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2018/05/07/微软的Live-SDK各个API简介/" >微软的Live SDK各个API简介</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -566,12 +862,51 @@ More...
     
         </ul>
     
-    <div class="archive-year"> 2013 </div>
+    <div class="archive-year"> 2016 </div>
     <ul class="year-list">
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2013/05/07/hello-hexo/" >hello hexo</a>
+            <span class="archive-post-date">09/21</span><a class="archive-post-title" href= "/2016/09/21/python-socket-error-Errno-48-Address-already-in-use/" >python socket.error: [Errno 48] Address already in use</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/21</span><a class="archive-post-title" href= "/2016/07/21/NSURL创建出来为nil的问题/" >NSURL创建出来为nil的问题</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/29</span><a class="archive-post-title" href= "/2016/04/29/Unable-to-add-App-ID-because-the-10-App-ID-limit-in-7-days-has-been-exceeded解决办法/" >Unable to add App ID because the '10' App ID limit in '7' days has been exceeded解决办法</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2015 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/22</span><a class="archive-post-title" href= "/2015/12/22/如何统计xcode工程的代码总行数/" >如何统计xcode工程的代码总行数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/16</span><a class="archive-post-title" href= "/2015/12/16/自定义Navigation转场动画/" >自定义Navigation转场动画</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/10</span><a class="archive-post-title" href= "/2015/12/10/swift开发中的No-such-module-Cocoa-错误/" >swift开发中的No such module 'Cocoa' 错误</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/07</span><a class="archive-post-title" href= "/2015/05/07/addSubView和insertSubView的差别/" >addSubView和insertSubView的差别?</a>
         </li>
     
     </div>
@@ -579,11 +914,19 @@ More...
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="test"><span class="iconfont-archer">&#xe606;</span>test</span>
-    
-        <span class="sidebar-tag-name" data-tags="Another"><span class="iconfont-archer">&#xe606;</span>Another</span>
-    
         <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="objc"><span class="iconfont-archer">&#xe606;</span>objc</span>
+    
+        <span class="sidebar-tag-name" data-tags="python"><span class="iconfont-archer">&#xe606;</span>python</span>
+    
+        <span class="sidebar-tag-name" data-tags="网络"><span class="iconfont-archer">&#xe606;</span>网络</span>
+    
+        <span class="sidebar-tag-name" data-tags="swift"><span class="iconfont-archer">&#xe606;</span>swift</span>
+    
+        <span class="sidebar-tag-name" data-tags="terminal"><span class="iconfont-archer">&#xe606;</span>terminal</span>
+    
+        <span class="sidebar-tag-name" data-tags="动画"><span class="iconfont-archer">&#xe606;</span>动画</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -619,6 +962,14 @@ jsonContent:
     <div class="sidebar-categories-name">
     
         <span class="sidebar-category-name" data-categories="Hexo"><span class="iconfont-archer">&#xe60a;</span>Hexo</span>
+    
+        <span class="sidebar-category-name" data-categories="Objective-C"><span class="iconfont-archer">&#xe60a;</span>Objective-C</span>
+    
+        <span class="sidebar-category-name" data-categories="python"><span class="iconfont-archer">&#xe60a;</span>python</span>
+    
+        <span class="sidebar-category-name" data-categories="swift"><span class="iconfont-archer">&#xe60a;</span>swift</span>
+    
+        <span class="sidebar-category-name" data-categories="terminal"><span class="iconfont-archer">&#xe60a;</span>terminal</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
